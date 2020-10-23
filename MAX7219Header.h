@@ -21,7 +21,7 @@ extern "C" {
 
 // ----------------------------------------------------- Letters.
 int lttrA[5]={0x9F,0x24,0x24,0x24,0x9F};   
-int lttrB[5]={0xBF,0xA4,0xA4,0xA4};
+int lttrB[5]={0xBF,0xA4,0xA4,0xA4,0x1B};
 int lttrC[5]={0x1F,0xA0,0xA0,0xA0,0x11};
 int lttrD[5]={0xBF,0xA0,0xA0,0xA0,0x1F};
 int lttrE[5]={0xBF,0xA4,0xA4,0xA4};
@@ -110,7 +110,7 @@ void max7219_disp_char(char data)
                 break;
       // If data = B.
       case 'B' :mx_pos = 0x03;
-                for(int i=0;i<4;i++)
+                for(int i=0;i<5;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
