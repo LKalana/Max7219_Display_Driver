@@ -47,9 +47,9 @@ int lttrX[5]={0xB1,0x0A,0x04,0x0A,0xB1};
 int lttrY[5]={0x30,0x08,0x87,0x08,0x30};
 int lttrZ[5]={0xA1,0xA2,0xA4,0xA8,0xB0};
 //---------------------------------------------------- Numbers.
-
-
-int mx_pos;
+//---------------------------------------------------- Special Characters.
+int spchar[8] = {0x80,0x44,0x28,0x11,0x29,0x45,0x03,0x1F};
+int mx_pos=0x00;
     
 void max7219_init()
 {
@@ -90,6 +90,19 @@ void max7219_disp_clear()
         xc8_spi_write(0x00);
         SS = 1;
  }
+}
+//-------------------------------------------------------------------------------------------------------------------- Display Special Character.
+void max7219_disp_sp_char()
+{
+    mx_pos = 0x01;
+   for(int i=0x00;i<0x08;i++)
+        {
+            SS = 0;// Enable Chip Select.
+            xc8_spi_write(mx_pos);// Digit Register.
+            xc8_spi_write(spchar[i]);// Segments.
+            SS = 1;// Disable Chip Select.
+            mx_pos++;// Increment my_pos.
+        }
 }
 //-------------------------------------------------------------------------------------------------------------------- Display Single Character.
 void max7219_disp_char(char data)
