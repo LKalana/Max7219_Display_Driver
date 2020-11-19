@@ -12,7 +12,7 @@
  * Git Fixes:-
  * Add void main.
  * Break the program loop using loop_braker (MCU execute void main repeatedly.This attempt will break the loop.).
- * 
+ * Change the Delay value to check the present of program loop and change equal operator to logical AND.
  * 
  */
 // PIC18F4550 Configuration Bit Settings
@@ -88,14 +88,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pic18f4550.h"
-#include "xc8_i2c_header.h"// Including XC8 Custom I2C Header.
+//#include "xc8_i2c_header.h"// Including XC8 Custom I2C Header.
 #include "XC8_SPI_Driver.h"// Including XC8 Custom SPI Header.
 #include "MAX7219Header.h"// Including XC8 Custom Max7219 Header.
 #define _XTAL_FREQ 400000 // Define Clock.
 /*
  * 
  */
-int loop_breaker = 0;// This variable act as a lock to avoid void main looping.
+int loop_breaker = 1;// This variable act as a lock to avoid void main looping.
 void main()
 {
     //---------------------------------------------------------- PIC18F4550 Init.
@@ -107,10 +107,11 @@ void main()
     xc8_spi_init(); // Initialize SPI.
     max7219_init(); // Initialize Max7219.
     max7219_disp_clear();// Clear Display
-    __delay_ms(500);
+    __delay_ms(1000);// Change duration from 500 to 1000 to check about loop breaks.
     loop_breaker = 1;// Breaking the loop.
    // Update Program loop.
-   while(loop_breaker == 1)
+   // Changed the equal operator to logical AND.
+   while(loop_breaker && 1)
    {
     max7219_disp_sp_char();// Display Special Character.
     __delay_ms(100);   
