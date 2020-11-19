@@ -13,6 +13,7 @@
  * Add void main.
  * Break the program loop using loop_braker (MCU execute void main repeatedly.This attempt will break the loop.).
  * Change the Delay value to check the present of program loop and change equal operator to logical AND.
+ * Last commit doesn't work.Therefore changing the delay element will solved the loop problem temporary.
  * 
  */
 // PIC18F4550 Configuration Bit Settings
@@ -98,6 +99,10 @@
 int loop_breaker = 1;// This variable act as a lock to avoid void main looping.
 void main()
 {
+    /*
+     Note :- Even if i add loop_breaker the system still loops.By further observations,that identifies that the delay element after the matrix 
+             clear cause the blink glitch.Reducing the delay between 1 to 10 ms will solve the problem temporary.
+     */
     //---------------------------------------------------------- PIC18F4550 Init.
     ADCON0bits.ADON = 0; // Disable Analog Module.
     ADCON1 = 0x0F; // Setting GPIO to Digital.
@@ -107,7 +112,7 @@ void main()
     xc8_spi_init(); // Initialize SPI.
     max7219_init(); // Initialize Max7219.
     max7219_disp_clear();// Clear Display
-    __delay_ms(1000);// Change duration from 500 to 1000 to check about loop breaks.
+    __delay_ms(5);// Change duration from 500 to 1000 to check about loop breaks.
     loop_breaker = 1;// Breaking the loop.
    // Update Program loop.
    // Changed the equal operator to logical AND.
