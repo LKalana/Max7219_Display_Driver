@@ -1,124 +1,412 @@
 /* 
- * File:   firmware_4550.c
- * Author: Liyanage Kalana Perera 
+ * File:   MAX7219Header.h
+ * Author: Kalana
  *
- * Created on November 11, 2020, 11:22 AM
+ * Created on October 19, 2020, 10:47 PM
  */
 
-// Solo Purpose to program PIC on this Laptop....
-// In This program.It is trying to control PCF8574.
-// This version works well on Proteus Simulation.
+#ifndef MAX7219HEADER_H
+#define	MAX7219HEADER_H
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
+//----------------------------------------------------------------------------------------------------------- Initialize Max7219 Chip.
 /*
- * Git Fixes:-
- * Add void main.
- * Break the program loop using loop_braker (MCU execute void main repeatedly.This attempt will break the loop.).
- * Change the Delay value to check the present of program loop and change equal operator to logical AND.
- * Last commit doesn't work.Therefore changing the delay element will solved the loop problem temporary.
- * 
- */
-// PIC18F4550 Configuration Bit Settings
+ For the changes, Refer Datasheet.
+*/
 
-// 'C' source line config statements
+// Note:- To use DP, instead of using 0000 use 1000 (0x80).
+// Example = to display 0x1F with DP, Use 0x9F.
 
-// CONFIG1L
-#pragma config PLLDIV = 1       // PLL Prescaler Selection bits (No prescale (4 MHz oscillator input drives PLL directly))
-#pragma config CPUDIV = OSC1_PLL2// System Clock Postscaler Selection bits ([Primary Oscillator Src: /1][96 MHz PLL Src: /2])
-#pragma config USBDIV = 1       // USB Clock Selection bit (used in Full-Speed USB mode only; UCFG:FSEN = 1) (USB clock source comes directly from the primary oscillator block with no postscale)
-
-// CONFIG1H
-#pragma config FOSC = INTOSC_HS // Oscillator Selection bits (Internal oscillator, HS oscillator used by USB (INTHS))
-#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
-#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
-
-// CONFIG2L
-#pragma config PWRT = OFF       // Power-up Timer Enable bit (PWRT disabled)
-#pragma config BOR = ON         // Brown-out Reset Enable bits (Brown-out Reset enabled in hardware only (SBOREN is disabled))
-#pragma config BORV = 3         // Brown-out Reset Voltage bits (Minimum setting 2.05V)
-#pragma config VREGEN = OFF     // USB Voltage Regulator Enable bit (USB voltage regulator disabled)
-
-// CONFIG2H
-#pragma config WDT = ON         // Watchdog Timer Enable bit (WDT enabled)
-#pragma config WDTPS = 32768    // Watchdog Timer Postscale Select bits (1:32768)
-
-// CONFIG3H
-#pragma config CCP2MX = ON      // CCP2 MUX bit (CCP2 input/output is multiplexed with RC1)
-#pragma config PBADEN = ON      // PORTB A/D Enable bit (PORTB<4:0> pins are configured as analog input channels on Reset)
-#pragma config LPT1OSC = OFF    // Low-Power Timer 1 Oscillator Enable bit (Timer1 configured for higher power operation)
-#pragma config MCLRE = OFF      // MCLR Pin Enable bit (RE3 input pin enabled; MCLR pin disabled)
-
-// CONFIG4L
-#pragma config STVREN = ON      // Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause Reset)
-#pragma config LVP = ON         // Single-Supply ICSP Enable bit (Single-Supply ICSP enabled)
-#pragma config ICPRT = OFF      // Dedicated In-Circuit Debug/Programming Port (ICPORT) Enable bit (ICPORT disabled)
-#pragma config XINST = OFF      // Extended Instruction Set Enable bit (Instruction set extension and Indexed Addressing mode disabled (Legacy mode))
-
-// CONFIG5L
-#pragma config CP0 = OFF        // Code Protection bit (Block 0 (000800-001FFFh) is not code-protected)
-#pragma config CP1 = OFF        // Code Protection bit (Block 1 (002000-003FFFh) is not code-protected)
-#pragma config CP2 = OFF        // Code Protection bit (Block 2 (004000-005FFFh) is not code-protected)
-#pragma config CP3 = OFF        // Code Protection bit (Block 3 (006000-007FFFh) is not code-protected)
-
-// CONFIG5H
-#pragma config CPB = OFF        // Boot Block Code Protection bit (Boot block (000000-0007FFh) is not code-protected)
-#pragma config CPD = OFF        // Data EEPROM Code Protection bit (Data EEPROM is not code-protected)
-
-// CONFIG6L
-#pragma config WRT0 = OFF       // Write Protection bit (Block 0 (000800-001FFFh) is not write-protected)
-#pragma config WRT1 = OFF       // Write Protection bit (Block 1 (002000-003FFFh) is not write-protected)
-#pragma config WRT2 = OFF       // Write Protection bit (Block 2 (004000-005FFFh) is not write-protected)
-#pragma config WRT3 = OFF       // Write Protection bit (Block 3 (006000-007FFFh) is not write-protected)
-
-// CONFIG6H
-#pragma config WRTC = OFF       // Configuration Register Write Protection bit (Configuration registers (300000-3000FFh) are not write-protected)
-#pragma config WRTB = OFF       // Boot Block Write Protection bit (Boot block (000000-0007FFh) is not write-protected)
-#pragma config WRTD = OFF       // Data EEPROM Write Protection bit (Data EEPROM is not write-protected)
-
-// CONFIG7L
-#pragma config EBTR0 = OFF      // Table Read Protection bit (Block 0 (000800-001FFFh) is not protected from table reads executed in other blocks)
-#pragma config EBTR1 = OFF      // Table Read Protection bit (Block 1 (002000-003FFFh) is not protected from table reads executed in other blocks)
-#pragma config EBTR2 = OFF      // Table Read Protection bit (Block 2 (004000-005FFFh) is not protected from table reads executed in other blocks)
-#pragma config EBTR3 = OFF      // Table Read Protection bit (Block 3 (006000-007FFFh) is not protected from table reads executed in other blocks)
-
-// CONFIG7H
-#pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot block (000000-0007FFh) is not protected from table reads executed in other blocks)
-
-// #pragma config statements should precede project file includes.
-// Use project enums instead of #define for ON and OFF.
-
-#include <xc.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "pic18f4550.h"
-//#include "xc8_i2c_header.h"// Including XC8 Custom I2C Header.
-#include "XC8_SPI_Driver.h"// Including XC8 Custom SPI Header.
-#include "MAX7219Header.h"// Including XC8 Custom Max7219 Header.
-#define _XTAL_FREQ 400000 // Define Clock.
-/*
- * 
- */
-int loop_breaker = 1;// This variable act as a lock to avoid void main looping.
-void main()
+// ----------------------------------------------------- Letters.
+int lttrA[5]={0x9F,0x24,0x24,0x24,0x9F};   
+int lttrB[5]={0xBF,0xA4,0xA4,0xA4,0x1B};
+int lttrC[5]={0x1F,0xA0,0xA0,0xA0,0x11};
+int lttrD[5]={0xBF,0xA0,0xA0,0xA0,0x1F};
+int lttrE[5]={0xBF,0xA4,0xA4,0xA4};
+int lttrF[5]={0xBF,0x24,0x24,0x24,0x20};
+int lttrG[5]={0x1F,0xA0,0xA4,0xA4,0x17};
+int lttrH[5]={0xBF,0x04,0x04,0x04,0xBF};
+int lttrI[3]={0xA0,0xBF,0xA0};
+int lttrJ[5]={0x01,0xA0,0xA0,0xA0,0x3F};
+int lttrK[5]={0xBF,0x04,0x04,0x0A,0xB1};
+int lttrL[5]={0xBF,0x80,0x80,0x80,0x80};
+int lttrM[5]={0xBF,0x10,0x08,0x10,0xBF};
+int lttrN[5]={0xBF,0x08,0x04,0x02,0xBF};
+int lttrO[5]={0x1F,0xA0,0xA0,0xA0,0x1F};
+int lttrP[5]={0xBF,0x24,0x24,0x24,0x18};
+int lttrQ[5]={0x1F,0xA0,0xA2,0xA1,0x9F};
+int lttrR[5]={0xBF,0x24,0x24,0x24,0x9B};
+int lttrS[5]={0x19,0xA4,0xA4,0xA4,0x13};
+int lttrT[5]={0x20,0x20,0xBF,0x20,0x20};
+int lttrU[5]={0x3F,0x80,0x80,0x80,0x3F};
+int lttrV[5]={0x3E,0x01,0x80,0x01,0x3E};
+int lttrW[5]={0xBF,0x01,0x02,0x01,0xBF};
+int lttrX[5]={0xB1,0x0A,0x04,0x0A,0xB1};
+int lttrY[5]={0x30,0x08,0x87,0x08,0x30};
+int lttrZ[5]={0xA1,0xA2,0xA4,0xA8,0xB0};
+//---------------------------------------------------- Numbers.
+//---------------------------------------------------- Special Characters.
+int spchar[8] = {0x80,0x44,0x28,0x11,0x29,0x45,0x03,0x1F};
+int mx_pos=0x00;
+    
+void max7219_init()
 {
-    /*
-     Note :- Even if i add loop_breaker the system still loops.By further observations,that identifies that the delay element after the matrix 
-             clear cause the blink glitch.Reducing the delay between 1 to 10 ms will solve the problem temporary.
-     */
-    //---------------------------------------------------------- PIC18F4550 Init.
-    ADCON0bits.ADON = 0; // Disable Analog Module.
-    ADCON1 = 0x0F; // Setting GPIO to Digital.
-    CMCON = 0x07; // Disable Comparators and set Digital.
-    //----------------------------------------------------------- Program Loop.
-    //_i2c_init(); // Initialize I2C. 
-    xc8_spi_init(); // Initialize SPI.
-    max7219_init(); // Initialize Max7219.
-    max7219_disp_clear();// Clear Display
-    __delay_ms(5);// Change duration from 500 to 1000 to check about loop breaks.
-    loop_breaker = 1;// Breaking the loop.
-   // Update Program loop.
-   // Changed the equal operator to logical AND.
-   while(loop_breaker && 1)
-   {
-    max7219_disp_sp_char();// Display Special Character.
-    __delay_ms(100);   
-   }
+/* Decode Mode Register */
+SS = 0;
+xc8_spi_write(0x09);
+xc8_spi_write(0x00);
+SS = 1;
+/* Intensity Register */
+SS = 0;
+xc8_spi_write(0x0A);
+xc8_spi_write(0x0F);
+SS = 1;
+/* Scan Limit Register */
+SS = 0;
+xc8_spi_write(0x0B);
+xc8_spi_write(0x07);
+SS = 1;
+/* Shutdown Register */
+SS = 0;
+xc8_spi_write(0x0C);
+xc8_spi_write(0x01);
+SS = 1;
+/* Display Test Register */
+SS = 0;
+xc8_spi_write(0x0F);
+xc8_spi_write(0x00);
+SS = 1;
+	
 }
+//------------------------------------------------------------------------------------------------------------------- Clear Function.
+void max7219_disp_clear()
+{
+   for(int i=0x01;i<0x09;i++)
+     {
+        SS = 0;
+        xc8_spi_write(i);
+        xc8_spi_write(0x00);
+        SS = 1;
+ }
+}
+//-------------------------------------------------------------------------------------------------------------------- Display Special Character.
+void max7219_disp_sp_char()
+{
+    mx_pos = 0x01;
+   for(int i=0x00;i<0x08;i++)
+        {
+            SS = 0;// Enable Chip Select.
+            xc8_spi_write(mx_pos);// Digit Register.
+            xc8_spi_write(spchar[i]);// Segments.
+            SS = 1;// Disable Chip Select.
+            mx_pos++;// Increment my_pos.
+        }
+}
+//-------------------------------------------------------------------------------------------------------------------- Display Single Character.
+void max7219_disp_char(char data)
+{
+// Switch condition
+  switch (data)
+  {
+      // If data = A.
+      case 'A' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrA[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
+                    }
+                break;
+      // If data = B.
+      case 'B' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrB[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = C.
+      case 'C' :mx_pos = 0x02;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrC[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = D.
+      case 'D' :mx_pos = 0x02;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrD[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = E.
+      case 'E' :mx_pos = 0x03;
+                for(int i=0;i<4;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrE[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+       // If data = F.
+      case 'F' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrF[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = G.
+      case 'G' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrG[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = H.
+      case 'H' :mx_pos = 0x02;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrH[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = I.
+      case 'I' :mx_pos = 0x04;
+                for(int i=0;i<3;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrI[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = J.
+      case 'J' :mx_pos = 0x02;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrJ[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = K.
+      case 'K' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrK[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = L.
+      case 'L' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrL[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = M.
+      case 'M' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrM[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = N.
+      case 'N' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrN[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = O.
+      case 'O' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrO[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = P.
+      case 'P' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrP[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = Q.
+      case 'Q' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrQ[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = R.
+      case 'R' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrR[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = S.
+      case 'S' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrS[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = T.
+      case 'T' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrT[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = U.
+      case 'U' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrU[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = V.
+      case 'V' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrV[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = W.
+      case 'W' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrW[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = X.
+      case 'X' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrX[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = Y.
+      case 'Y' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrY[i]);
+                       SS = 1;
+                       mx_pos++;
+                    }
+                break;
+      // If data = Z.
+      case 'Z' :mx_pos = 0x03;
+                for(int i=0;i<5;i++)
+                    {
+                       SS = 0;// Disable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrZ[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
+                    }
+                break;
+      // If data = Default. 
+      default  :SS = 0;
+                xc8_spi_write(0x01); // Digit Register.
+                xc8_spi_write(0x00);// Segments.
+                SS = 1;
+                break;
+  }   
+}
+#ifdef	__cplusplus
+}
+#endif
+
+#endif	/* MAX7219HEADER_H */
+
