@@ -20,36 +20,36 @@ extern "C" {
 // Example = to display 0x1F with DP, Use 0x9F.
 
 // ----------------------------------------------------- Letters.
-int lttrA[5]={0x9F,0x24,0x24,0x24,0x9F};   
-int lttrB[5]={0xBF,0xA4,0xA4,0xA4,0x1B};
-int lttrC[5]={0x1F,0xA0,0xA0,0xA0,0x11};
-int lttrD[5]={0xBF,0xA0,0xA0,0xA0,0x1F};
-int lttrE[5]={0xBF,0xA4,0xA4,0xA4};
-int lttrF[5]={0xBF,0x24,0x24,0x24,0x20};
-int lttrG[5]={0x1F,0xA0,0xA4,0xA4,0x17};
-int lttrH[5]={0xBF,0x04,0x04,0x04,0xBF};
-int lttrI[3]={0xA0,0xBF,0xA0};
-int lttrJ[5]={0x01,0xA0,0xA0,0xA0,0x3F};
-int lttrK[5]={0xBF,0x04,0x04,0x0A,0xB1};
-int lttrL[5]={0xBF,0x80,0x80,0x80,0x80};
-int lttrM[5]={0xBF,0x10,0x08,0x10,0xBF};
-int lttrN[5]={0xBF,0x08,0x04,0x02,0xBF};
-int lttrO[5]={0x1F,0xA0,0xA0,0xA0,0x1F};
-int lttrP[5]={0xBF,0x24,0x24,0x24,0x18};
-int lttrQ[5]={0x1F,0xA0,0xA2,0xA1,0x9F};
-int lttrR[5]={0xBF,0x24,0x24,0x24,0x9B};
-int lttrS[5]={0x19,0xA4,0xA4,0xA4,0x13};
-int lttrT[5]={0x20,0x20,0xBF,0x20,0x20};
-int lttrU[5]={0x3F,0x80,0x80,0x80,0x3F};
-int lttrV[5]={0x3E,0x01,0x80,0x01,0x3E};
-int lttrW[5]={0xBF,0x01,0x02,0x01,0xBF};
-int lttrX[5]={0xB1,0x0A,0x04,0x0A,0xB1};
-int lttrY[5]={0x30,0x08,0x87,0x08,0x30};
-int lttrZ[5]={0xA1,0xA2,0xA4,0xA8,0xB0};
+signed int lttrA[9]={0x00,0xFC,0x12,0x12,0x12,0xFC,0x00,0x00};   
+signed int lttrB[9]={0x00,0xFE,0x92,0x92,0x92,0x6C,0x00,0x00};
+signed int lttrC[9]={0x00,0x7C,0x82,0x82,0x82,0x44,0x00,0x00};
+signed int lttrD[9]={0x00,0xFE,0x82,0x82,0x82,0x7C,0x00,0x00};
+signed int lttrE[9]={0x00,0xFE,0x92,0x92,0x92,0x82,0x00,0x00};
+signed int lttrF[9]={0x00,0xFE,0x12,0x12,0x12,0x02,0x00,0x00};
+signed int lttrG[9]={0x00,0x7C,0x82,0x92,0x92,0x74,0x00,0x00};
+signed int lttrH[9]={0x00,0xFE,0x10,0x10,0x10,0xFE,0x00,0x00};
+signed int lttrI[9]={0x00,0x00,0x82,0xFE,0x82,0x00,0x00,0x00};
+signed int lttrJ[9]={0x00,0x40,0x82,0x82,0x82,0x7E,0x00,0x00};
+signed int lttrK[9]={0x00,0xFE,0x10,0x10,0x28,0xC6,0x00,0x00};
+signed int lttrL[9]={0x00,0xFE,0x80,0x80,0x80,0x80,0x00,0x00};
+signed int lttrM[9]={0x00,0xFE,0x04,0x08,0x04,0xFE,0x00,0x00};
+signed int lttrN[9]={0x00,0xFE,0x08,0x10,0x20,0xFE,0x00,0x00};
+signed int lttrO[9]={0x00,0x7C,0x82,0x82,0x82,0x7C,0x00,0x00};
+signed int lttrP[9]={0x00,0xFE,0x12,0x12,0x12,0x0C,0x00,0x00};
+signed int lttrQ[9]={0x00,0x7C,0x82,0xA2,0xC2,0xFC,0x00,0x00};
+signed int lttrR[9]={0x00,0xFE,0x12,0x12,0x12,0xEC,0x00,0x00};
+signed int lttrS[9]={0x00,0x4C,0x92,0x92,0x92,0x64,0x00,0x00};
+signed int lttrT[9]={0x00,0x02,0x02,0xFE,0x02,0x02,0x00,0x00};
+signed int lttrU[9]={0x00,0x7E,0x80,0x80,0x80,0x7E,0x00,0x00};
+signed int lttrV[9]={0x00,0x3E,0x40,0x80,0x40,0x3E,0x00,0x00};
+signed int lttrW[9]={0x00,0xFE,0x40,0x20,0x40,0xFE,0x00,0x00};
+signed int lttrX[9]={0x00,0xC6,0x28,0x10,0x28,0xC6,0x00,0x00};
+signed int lttrY[9]={0x00,0x06,0x08,0xF0,0x08,0x06,0x00,0x00};
+signed int lttrZ[9]={0x00,0xC2,0xA2,0x92,0x8A,0x86,0x00,0x00};
 //---------------------------------------------------- Numbers.
 //---------------------------------------------------- Special Characters.
-int spchar[8] = {0x80,0x44,0x28,0x11,0x29,0x45,0x03,0x1F};
-int mx_pos=0x00;
+signed int spchar[9] = {0x80,0x44,0x28,0x11,0x29,0x45,0x03,0x1F};
+signed int mx_pos=0x00;
     
 void max7219_init()
 {
@@ -83,7 +83,7 @@ SS = 1;
 //------------------------------------------------------------------------------------------------------------------- Clear Function.
 void max7219_disp_clear()
 {
-   for(int i=0x01;i<0x09;i++)
+   for(signed int i=0x01;i<0x09;i++)
      {
         SS = 0;
         xc8_spi_write(i);
@@ -95,7 +95,7 @@ void max7219_disp_clear()
 void max7219_disp_sp_char()
 {
     mx_pos = 0x01;
-   for(int i=0x00;i<0x08;i++)
+   for(signed int i=0x00;i<0x09;i++)
         {
             SS = 0;// Enable Chip Select.
             xc8_spi_write(mx_pos);// Digit Register.
@@ -111,8 +111,8 @@ void max7219_disp_char(char data)
   switch (data)
   {
       // If data = A.
-      case 'A' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'A' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;// Enable Chip Select.
                        xc8_spi_write(mx_pos);// Digit Register.
@@ -122,8 +122,8 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = B.
-      case 'B' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'B' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -133,19 +133,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = C.
-      case 'C' :mx_pos = 0x02;
-                for(int i=0;i<5;i++)
+      case 'C' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrC[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrC[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = D.
-      case 'D' :mx_pos = 0x02;
-                for(int i=0;i<5;i++)
+      case 'D' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -155,8 +155,8 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = E.
-      case 'E' :mx_pos = 0x03;
-                for(int i=0;i<4;i++)
+      case 'E' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -165,20 +165,20 @@ void max7219_disp_char(char data)
                        mx_pos++;
                     }
                 break;
-       // If data = F.
-      case 'F' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      // If data = F.
+      case 'F' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrF[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrF[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = G.
-      case 'G' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'G' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -188,19 +188,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = H.
-      case 'H' :mx_pos = 0x02;
-                for(int i=0;i<5;i++)
+      case 'H' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrH[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrH[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = I.
-      case 'I' :mx_pos = 0x04;
-                for(int i=0;i<3;i++)
+      case 'I' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -210,19 +210,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = J.
-      case 'J' :mx_pos = 0x02;
-                for(int i=0;i<5;i++)
+      case 'J' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrJ[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrJ[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = K.
-      case 'K' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'K' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -231,9 +231,10 @@ void max7219_disp_char(char data)
                        mx_pos++;
                     }
                 break;
+
       // If data = L.
-      case 'L' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'L' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -243,19 +244,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = M.
-      case 'M' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'M' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrM[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrM[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = N.
-      case 'N' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'N' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -265,19 +266,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = O.
-      case 'O' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'O' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrO[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrO[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = P.
-      case 'P' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'P' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -287,19 +288,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = Q.
-      case 'Q' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'Q' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrQ[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrQ[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = R.
-      case 'R' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'R' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -308,9 +309,10 @@ void max7219_disp_char(char data)
                        mx_pos++;
                     }
                 break;
+
       // If data = S.
-      case 'S' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'S' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -320,19 +322,19 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = T.
-      case 'T' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'T' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrT[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrT[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = U.
-      case 'U' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'U' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -342,30 +344,30 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = V.
-      case 'V' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'V' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrV[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrV[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = W.
-      case 'W' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'W' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrW[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrW[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = X.
-      case 'X' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'X' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
                        SS = 0;
                        xc8_spi_write(mx_pos);
@@ -375,25 +377,25 @@ void max7219_disp_char(char data)
                     }
                 break;
       // If data = Y.
-      case 'Y' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'Y' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;
-                       xc8_spi_write(mx_pos);
-                       xc8_spi_write(lttrY[i]);
-                       SS = 1;
-                       mx_pos++;
+                       SS = 0;// Enable Chip Select.
+                       xc8_spi_write(mx_pos);// Digit Register.
+                       xc8_spi_write(lttrY[i]);// Segments.
+                       SS = 1;// Disable Chip Select.
+                       mx_pos++;// Increment my_pos.
                     }
                 break;
       // If data = Z.
-      case 'Z' :mx_pos = 0x03;
-                for(int i=0;i<5;i++)
+      case 'Z' :mx_pos = 0x01;
+                for(signed int i=0x00;i<0x09;i++)
                     {
-                       SS = 0;// Disable Chip Select.
-                       xc8_spi_write(mx_pos);// Digit Register.
-                       xc8_spi_write(lttrZ[i]);// Segments.
-                       SS = 1;// Disable Chip Select.
-                       mx_pos++;// Increment my_pos.
+                       SS = 0;
+                       xc8_spi_write(mx_pos);
+                       xc8_spi_write(lttrZ[i]);
+                       SS = 1;
+                       mx_pos++;
                     }
                 break;
       // If data = Default. 
